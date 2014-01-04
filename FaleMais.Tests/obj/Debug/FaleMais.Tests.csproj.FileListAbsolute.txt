@@ -1,0 +1,7 @@
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\bin\Debug\FaleMais.Tests.dll
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\bin\Debug\FaleMais.Tests.pdb
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\bin\Debug\nunit.framework.dll
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\bin\Debug\nunit.framework.xml
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\obj\Debug\FaleMais.Tests.csprojResolveAssemblyReference.cache
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\obj\Debug\FaleMais.Tests.dll
+C:\Projetos\Teste\FaleMais\FaleMais.Tests\obj\Debug\FaleMais.Tests.pdb

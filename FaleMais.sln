@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaleMais", "FaleMais\FaleMais.csproj", "{89C7EA10-3F3D-42B8-865C-70FF04FB1FF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaleMais.Tests", "FaleMais.Tests\FaleMais.Tests.csproj", "{3988371F-BB79-4113-9750-3A5AA05747AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89C7EA10-3F3D-42B8-865C-70FF04FB1FF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C7EA10-3F3D-42B8-865C-70FF04FB1FF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C7EA10-3F3D-42B8-865C-70FF04FB1FF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C7EA10-3F3D-42B8-865C-70FF04FB1FF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3988371F-BB79-4113-9750-3A5AA05747AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3988371F-BB79-4113-9750-3A5AA05747AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3988371F-BB79-4113-9750-3A5AA05747AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3988371F-BB79-4113-9750-3A5AA05747AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
