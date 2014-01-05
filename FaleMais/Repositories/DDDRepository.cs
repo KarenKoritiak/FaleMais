@@ -5,48 +5,63 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using FaleMais.Contexts;
-using FaleMais.Models;
+using FaleMais.Models.Entities;
 
 namespace FaleMais.Repositories
 {
     public class DDDRepository
     {
+        private FaleMaisContext DBContext { get; set; }
+
+        public DDDRepository() 
+        {
+            this.DBContext = new FaleMaisContext();
+        }
+
+        public DDDRepository(FaleMaisContext dbContext)
+        {
+            this.DBContext = dbContext;
+            this.DBContext.Configuration.ProxyCreationEnabled = false;
+        }
+
         public void InsereOuAtualiza(DDD ddd)
         {
-            using (var db = new FaleMaisContext())
-            {
-                db.DDDs.AddOrUpdate(d => d.Numero, ddd);
-                db.SaveChanges();
-            }
+            this.DBContext.DDDs.AddOrUpdate(d => d.Numero, ddd);
+            this.DBContext.SaveChanges();
         }
 
         public void InsereOuAtualiza(List<DDD> ddds)
         {
-            using (var db = new FaleMaisContext())
-            {
-                db.DDDs.AddOrUpdate(d => d.Numero, ddds.ToArray());
-                db.SaveChanges();
-            }
+            this.DBContext.DDDs.AddOrUpdate(d => d.Numero, ddds.ToArray());
+            this.DBContext.SaveChanges();
         }
 
         public DDD RetornaPorCidade(Cidade cidade)
         {
-            using (var db = new FaleMaisContext())
-            {
-                return (from DDD d in db.DDDs
-                        where d.Cidades.Contains(cidade)
-                        select d).FirstOrDefault();
-            }
+            return (from DDD d in this.DBContext.DDDs
+                    where d.Cidades.Contains(cidade)
+                    select d).FirstOrDefault();
         }
 
         public DDD RetornaPorNumero(string numero)
         {
-            using (var db = new FaleMaisContext())
-            {
-                return (from DDD d in db.DDDs
-                        where d.Numero == numero
-                        select d).FirstOrDefault();
-            }
+            return (from DDD d in this.DBContext.DDDs
+                    where d.Numero == numero
+                    select d).FirstOrDefault();
+        }
+
+        public List<DDD> RetornaDestinosPossiveis(string origemNumero)
+        {
+            return (from Tarifa t in this.DBContext.Tarifas
+                    where t.OrigemNumero == origemNumero
+                    select t).Select(d => d.Destino).Distinct().OrderBy(d => d.Numero).ToList();
+        }
+
+        public List<DDD> RetornaTodos()
+        {
+            return (from DDD d in this.DBContext.DDDs
+                    orderby d.Numero
+                    select d).ToList();
         }
     }
 }

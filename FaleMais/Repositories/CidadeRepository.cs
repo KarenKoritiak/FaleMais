@@ -5,12 +5,24 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using FaleMais.Contexts;
-using FaleMais.Models;
+using FaleMais.Models.Entities;
 
 namespace FaleMais.Repositories
 {
     public class CidadeRepository
     {
+        private FaleMaisContext DBContext { get; set; }
+
+        public CidadeRepository() 
+        {
+            this.DBContext = new FaleMaisContext();
+        }
+
+        public CidadeRepository(FaleMaisContext dbContext)
+        {
+            this.DBContext = dbContext;
+        }
+
         public void Insere(List<Cidade> cidades)
         {
             foreach (var cidade in cidades)
@@ -21,11 +33,8 @@ namespace FaleMais.Repositories
         {
             if (this.Existente(cidade)) return;
 
-            using (var db = new FaleMaisContext())
-            {
-                db.Cidades.Add(cidade);
-                db.SaveChanges();
-            }
+            this.DBContext.Cidades.Add(cidade);
+            this.DBContext.SaveChanges();
         }
 
         public bool Existente(Cidade cidade)
@@ -35,24 +44,26 @@ namespace FaleMais.Repositories
 
         public Cidade RetornaPorEstadoENome(string uf, string nome)
         {
-            using (var db = new FaleMaisContext())
-            {
-                return (from Cidade c in db.Cidades
-                        where c.EstadoUF == uf && c.Nome == nome
-                        select c).FirstOrDefault();
-            }
+            return (from Cidade c in this.DBContext.Cidades
+                    where c.EstadoUF == uf && c.Nome == nome
+                    select c).FirstOrDefault();
+        }
+
+        public List<Cidade> RetornaPorTermo(string termo)
+        {
+            termo = termo.ToLower();
+
+            return (from Cidade c in this.DBContext.Cidades
+                    where c.Nome.ToLower().StartsWith(termo)
+                    orderby c.Nome
+                    select c).ToList();
         }
 
         public List<Cidade> RetornaCidadesSemDDD()
         {
-            DDDRepository dddRepository = new DDDRepository();
-
-            using (var db = new FaleMaisContext())
-            {
-                return (from Cidade c in db.Cidades
-                        where db.DDDs.FirstOrDefault(d => d.Cidades.Contains(c)) == null
-                        select c).ToList();
-            }
+            return (from Cidade c in this.DBContext.Cidades
+                    where this.DBContext.DDDs.FirstOrDefault(d => d.Cidades.Contains(c)) == null
+                    select c).ToList();
         }
     }
 }

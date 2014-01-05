@@ -1,0 +1,42 @@
+﻿<hr />
+
+@if (ViewBag.FaleMaisValor == null)
+{
+    <div>
+        <h4>Nenhuma tarifa encontrada para os valores informados.</h4>
+        <p>Verifique se você informou corretamente todos os campos.</p>
+    </div>
+}
+else
+{
+
+    <div class="row text-center">
+        <div class="col-xs-5">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3>
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        Valor com FaleMais
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <h1>@ViewBag.FaleMaisValor.ToString("c")</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3>
+                        <span class="glyphicon glyphicon-thumbs-down"></span>
+                        Valor sem FaleMais
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <h1>@ViewBag.TarifaComumValor.ToString("c")</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,83 @@
+﻿@model FaleMais.Models.Values.TarifaFacade
+
+@{
+    ViewBag.Title = "Tarifas";
+}
+
+@section Scripts{
+    @Styles.Render("~/Content/themes/base/css")
+
+
+    @Scripts.Render("~/bundles/jqueryui",
+                "~/bundles/jqueryval",
+                "~/bundles/jqueryfalemais")
+}
+
+<div class="row">
+    <div class="col-xs-3">
+        <ul class="nav nav-list" id="OpcoesDeBusca">
+            <li>
+                <a href="#tab1">
+                    Pesquisar por DDD
+                </a>
+            </li>
+            <li>
+                <a href="#tab2">
+                    Pesquisar por cidades
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-9">
+        <h2>Compare as tarifas</h2>
+        <p>Escolha a origem e o destino da ligação, e confira a vantagem de utilizar o FaleMais.</p>
+
+        @using (Ajax.BeginForm("calcula", "tarifa", null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ResultadoTarifa" },  new { @class="form-horizontal", id="CalculaTarifaForm" }))
+        {
+            <div id="tab1" class="OpcaoDeBusca">
+                <div class="row">
+                    <div class="col-xs-3"><label>DDD de Origem</label></div>
+                    <div class="col-xs-7">@Html.DropDownList("OpcoesDDDOrigem", new SelectList(Model.Origens, "Numero", "Numero"))</div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-3"><label>DDD de Destino</label></div>
+                    <div class="col-xs-7">@Html.DropDownList("OpcoesDDDDestino", new SelectList(Model.Destinos, "Numero", "Numero"))</div>
+                </div>
+                <br />
+            </div>
+
+            <div id="tab2" class="OpcaoDeBusca hide">
+                <div class="row">
+                    <div class="col-xs-3"><label>Cidade de Origem</label></div>
+                    <div class="col-xs-7">@Html.TextBox("CidadeOrigemNome")</div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-3"><label>Cidade de Destino</label></div>
+                    <div class="col-xs-7">@Html.TextBox("CidadeDestinoNome")</div>
+                </div>
+                <br />
+            </div>
+
+            @Html.HiddenFor(x => x.Tarifa.OrigemNumero)
+            @Html.HiddenFor(x => x.Tarifa.DestinoNumero)
+            
+            <div class="row">
+                <div class="col-xs-3"><label>Minutos</label></div>
+                <div class="col-xs-7">@Html.TextBoxFor(x => x.Minutos, new { type = "number", min="1" })</div>
+            </div>            
+            <br />
+            <div class="row">
+                <div class="col-xs-3"><label>Plano FaleMais</label></div>
+                <div class="col-xs-7">@Html.DropDownListFor(x => x.Plano.Id, new SelectList(Model.Planos, "Id", "Nome"))</div>
+            </div>            
+            <br />
+            <div><button type="submit" class="btn btn-success">Calcular</button></div>
+        }
+
+        <div id="ResultadoTarifa"></div>
+    </div>
+</div>
+
+<hr />

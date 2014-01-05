@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using FaleMais.Contexts;
-using FaleMais.Models;
+using FaleMais.Models.Entities;
 
 namespace FaleMais.Repositories
 {

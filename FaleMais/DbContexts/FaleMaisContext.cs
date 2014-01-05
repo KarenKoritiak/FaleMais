@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using FaleMais.Models.Entities;
 
 namespace FaleMais.Contexts
 {
-    using FaleMais.Models;
-
     public class FaleMaisContext : DbContext
     {
         public DbSet<Estado> Estados { get; set; }
