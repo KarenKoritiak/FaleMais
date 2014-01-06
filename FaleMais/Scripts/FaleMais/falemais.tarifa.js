@@ -1,12 +1,12 @@
 ﻿$(function () {
-    $("select[name='Tarifa.OrigemNumero']").on('change', function (event) {
+    $("#OpcoesDDDOrigem").on('change', function (event) {
         var url = "tarifa/retornadestinos?origemNumero=" + $(this).val();
         $.get(url, function (destinos) {
             var options = "";
             $.each(destinos, function (index, value) {
                 options += "<option value='" + value.Numero + "'>" + value.Numero + "</option>";
             });
-            $("select[name='Tarifa.DestinoNumero']").html(options);
+            $("#OpcoesDDDDestino").html(options);
         });
     });
 

@@ -23,27 +23,21 @@
                 <div class="navbar navbar-default" role="navigation">
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="@( ViewContext.RouteData.Values["controller"].ToString() == "Home" ? "active" : "")">
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home" ? "active" : "")">
                                 <a href="@Url.Action("index", "home")">Home</a>
                             </li>
-                            <li class="@( ViewContext.RouteData.Values["controller"].ToString() == "Tarifa" ? "active" : "")">
+                            <li class="@( ViewContext.RouteData.Values["controller"].ToString().ToLower() == "tarifa" ? "active" : "")">
                                 <a href="@Url.Action("index", "tarifa")">Tarifas</a>
-                            </li>
-                            <li class="@( ViewContext.RouteData.Values["controller"].ToString() == "Contato" ? "active" : "")">
-                                <a href="@Url.Action("index", "contato")">Contato</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("index", "login", new { area = "admin"})">Área Interna</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-
             @RenderBody()
 
             <div class="footer">
+                <hr />
                 <p>© Telzir 2014</p>
             </div>
 

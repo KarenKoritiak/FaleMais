@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using FaleMais.Models.Entities;
+using FaleMais.Resources;
 
 namespace FaleMais.Models.Values
 {
@@ -36,5 +38,24 @@ namespace FaleMais.Models.Values
         public Tarifa Tarifa { get; set; }
         public FaleMaisPlano Plano { get; set; }
         public int Minutos { get; set; }
+
+        public bool Valido
+        {
+            get
+            {
+                return this.RetornaErrosDeValidacao().Count() == 0;
+            }
+        }
+
+        public IEnumerable<ValidationResult> RetornaErrosDeValidacao()
+        {
+            if (string.IsNullOrEmpty(this.Tarifa.OrigemNumero))
+                yield return new ValidationResult(string.Format(Mensagens.CampoObrigatorio, "origem da ligação"), new string[] { "Tarifa.OrigemNumero" }) ;
+
+            if (string.IsNullOrEmpty(this.Tarifa.OrigemNumero))
+                yield return new ValidationResult(string.Format(Mensagens.CampoObrigatorio, "destino da ligação"), new string[] { "Tarifa.DestinoNumero" }) ;
+
+            yield break;
+        }
     }
 }

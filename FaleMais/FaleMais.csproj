@@ -187,9 +187,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Values\ResultadoFacade.cs" />
+    <Compile Include="Resources\Mensagens.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mensagens.resx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201401042055014_Initial.cs" />
     <Compile Include="Migrations\201401042055014_Initial.Designer.cs">
       <DependentUpon>201401042055014_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401060137057_UpdateRequiredFields.cs" />
+    <Compile Include="Migrations\201401060137057_UpdateRequiredFields.Designer.cs">
+      <DependentUpon>201401060137057_UpdateRequiredFields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Seeds\CidadeSeeds.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -286,7 +296,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
-    <Content Include="Scripts\falemais.tarifa.js" />
+    <Content Include="Scripts\FaleMais\falemais.tarifa.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
@@ -328,7 +338,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Tarifa\Index.cshtml" />
-    <Content Include="Views\Tarifa\Resultados.cshtml" />
+    <Content Include="Views\Tarifa\_Resultado.cshtml" />
     <Content Include="Views\Erro\Index.cshtml" />
     <Content Include="Views\Erro\PaginaNaoEncontrada.cshtml" />
   </ItemGroup>
@@ -340,8 +350,15 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Mensagens.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Mensagens.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401042055014_Initial.resx">
       <DependentUpon>201401042055014_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401060137057_UpdateRequiredFields.resx">
+      <DependentUpon>201401060137057_UpdateRequiredFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

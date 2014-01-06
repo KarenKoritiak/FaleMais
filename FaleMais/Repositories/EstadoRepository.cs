@@ -11,23 +11,29 @@ namespace FaleMais.Repositories
 {
     public class EstadoRepository
     {
+        private FaleMaisContext DBContext { get; set; }
+
+        public EstadoRepository() 
+        {
+            this.DBContext = new FaleMaisContext();
+        }
+
+        public EstadoRepository(FaleMaisContext dbContext)
+        {
+            this.DBContext = dbContext;
+        }
+
         public void InsereOuAtualiza(Estado estado)
         {
-            using (var db = new FaleMaisContext())
-            {
-                db.Estados.AddOrUpdate(e => e.UF, estado);
-                db.SaveChanges();
-            }
+            this.DBContext.Estados.AddOrUpdate(e => e.UF, estado);
+            this.DBContext.SaveChanges();
         }
 
         public Estado RetornaPorUF(string uf)
         {
-            using (var db = new FaleMaisContext())
-            {
-                return (from Estado e in db.Estados
-                        where e.UF == uf
-                        select e).FirstOrDefault();
-            }
+            return (from Estado e in this.DBContext.Estados
+                    where e.UF == uf
+                    select e).FirstOrDefault();
         }
     }
 }

@@ -65,3 +65,5 @@ C:\Projetos\Teste\FaleMais\FaleMais\bin\Mono.Math.xml
 C:\Projetos\Teste\FaleMais\FaleMais\obj\Debug\FaleMais.csproj.App.config
 C:\Projetos\Teste\FaleMais\FaleMais\bin\log4net.dll
 C:\Projetos\Teste\FaleMais\FaleMais\bin\log4net.xml
+C:\Projetos\Teste\FaleMais\FaleMais\obj\Debug\FaleMais.Migrations.UpdateRequiredFields.resources
+C:\Projetos\Teste\FaleMais\FaleMais\obj\Debug\FaleMais.Resources.Mensagens.resources

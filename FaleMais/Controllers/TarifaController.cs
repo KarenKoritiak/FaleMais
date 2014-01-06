@@ -46,20 +46,28 @@ namespace FaleMais.Controllers
         [HttpPost]
         public ActionResult Calcula(TarifaFacade facade)
         {
-            if (!string.IsNullOrEmpty(facade.Tarifa.OrigemNumero) && !string.IsNullOrEmpty(facade.Tarifa.DestinoNumero))
-            {
+            ResultadoFacade resultado = new ResultadoFacade();
 
+            if (facade.Valido)
+            {
                 TarifaRepository tarifaRepository = new TarifaRepository(this.DBContext);
                 var tarifa = tarifaRepository.RetornaPorOrigemEDestino(facade.Tarifa.OrigemNumero, facade.Tarifa.DestinoNumero);
 
-                FaleMaisPlanoRepository faleMaisPlanoRepository = new FaleMaisPlanoRepository();
-                var plano = faleMaisPlanoRepository.RetornaPorId(facade.Plano.Id);
+                if (tarifa != null)
+                {
+                    FaleMaisPlanoRepository faleMaisPlanoRepository = new FaleMaisPlanoRepository();
+                    var plano = faleMaisPlanoRepository.RetornaPorId(facade.Plano.Id);
 
-                ViewBag.FaleMaisValor = plano.CalculaTarifa(tarifa, facade.Minutos);
-                ViewBag.TarifaComumValor = tarifa.CalculaValor(facade.Minutos);
+                    resultado.FaleMaisValor = plano.CalculaTarifa(tarifa, facade.Minutos);
+                    resultado.TarifaComumValor = tarifa.CalculaValor(facade.Minutos);
+                }
+            }
+            else
+            {
+                resultado.Erros = facade.RetornaErrosDeValidacao().ToList();
             }
 
-            return PartialView("Resultados");
+            return PartialView("_Resultado", resultado);
         }
     }
 }
