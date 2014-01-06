@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\ErroController.cs" />
     <Compile Include="Controllers\TarifaController.cs" />
     <Compile Include="DbContexts\FaleMaisContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -324,11 +325,12 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Tarifa\Index.cshtml" />
     <Content Include="Views\Tarifa\Resultados.cshtml" />
+    <Content Include="Views\Erro\Index.cshtml" />
+    <Content Include="Views\Erro\PaginaNaoEncontrada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

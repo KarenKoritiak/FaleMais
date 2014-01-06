@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using log4net;
 
 namespace FaleMais
 {
@@ -23,6 +24,24 @@ namespace FaleMais
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = this.Server.GetLastError();
+
+            ILog log = LogManager.GetLogger("Error");
+            log.Error(exception.Message, exception);
+
+            this.Server.ClearError();
+
+            HttpException httpException = exception as HttpException;
+            if (httpException != null && httpException.GetHttpCode() == 404)
+                Response.Redirect("~/erro/paginanaoencontrada");
+            else
+                Response.Redirect("~/erro");
         }
     }
 }
